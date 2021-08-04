@@ -1,0 +1,58 @@
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+<h1>ROYParkour運営専用ログイン画面</h1>
+<script type="text/javascript">
+
+function login() {
+  var id = document.form.id.value;
+  if (confirm("「" + id +"(ページID)」に接続しますか？")) {
+    var passwd=document.form.passwd.value;
+    var pass= unescape("%52%4F%59%30%35%30%34");
+    if (id.length > 0 && pass== passwd) {
+      location.replace("https://www.royparkour.mydns.jp/staff/" + id +".html")
+    }
+    else if (id.length > 0 && pass != passwd) {
+      alert("パスワードが間違っている、あるいは入力されていません");
+    }
+    else{
+      alert("ページID パスワードを入力してください");
+    }
+  }
+}
+
+
+</script>
+<script type="text/javascript">
+
+function modoru() {
+  location.replace("https://www.royparkour.mydns.jp/")
+}
+</script>
+</head>
+
+<body onload="document.form1.id.focus();">
+<form action="#" name="form">
+<table>
+<tr>
+<td align="left">ページID(IDによって接続先が変わります。)</td>
+<td><input type="text" name="id" value="" maxlength="20" accesskey="u"></td>
+</tr>
+<tr>
+<td>パスワード(大文字小文字に注意)</td>
+<td><input type="password" name="passwd" maxlength="10" accesskey="p" onkeydown="if (event.keyCode == 13) login();"></td>
+</tr>
+<tr>
+<td colspn="2"text align="left">
+<input type="button" value="ROYPKホームページに戻る" onclick="modoru();">
+<td colspan="2" align="right">
+<input type="button" value="接続する" onclick="login();">
+<input type="reset" value="入力内容を取り消す">
+
+</td>
+</tr>
+</table>
+</form>
+</body>
+
